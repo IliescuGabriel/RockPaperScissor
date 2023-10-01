@@ -1,6 +1,5 @@
 const choices = ['Rock', 'Paper', 'Scissors'];
 
-
 function getComputerChoice(){
     return choices[Math.floor(Math.random()*choices.length)]
 }
@@ -32,10 +31,25 @@ function playRound(playerSelection, computerSelection){
         return `You lost! ${computerSelection} beats ${playerSelection}.`;
     }
 }
+function getPlayerChoice(){
+    let validateInput = false;
+    while ( validateInput == false){
+        const input = prompt("Type rock, paper, or scissors!");
+        if( input == null){
+            continue;
+        }
+
+        const inputInLower = input.toLowerCase();
+        if (choices.includes(inputInLower)){
+            validateInput = true;
+            return inputInLower;
+        }
+    }
+}
 
 function game(){
     for (let i =0; i<5; i++){
-        const playerSelection = "Rock";
+        const playerSelection = getPlayerChoice();
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
